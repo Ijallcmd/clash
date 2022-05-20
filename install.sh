@@ -10,7 +10,7 @@ echo ""
 echo -e $b"➤ "$w"Open Clash For Termux Non Root"
 echo ""
 
-echo -e $b"➤ "$w"Yang abar yah bos ..."
+echo -e $b"➤ "$w"Yang Sabar Yah Boss ..."
 echo ""
 
 echo -e $b"➤ "$w" installing pacakge: "$g"clash"$w
