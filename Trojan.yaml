@@ -1,0 +1,9 @@
+proxies:
+ - name: "Trojan"
+   type: trojan
+   server: www.bug.com
+   port: 443
+   password: 1097eff0-9643-11ec-82f8-1239d0255272
+   udp: true
+   sni: www.bug.com
+   skip-cert-verify: true

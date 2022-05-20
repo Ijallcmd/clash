@@ -1,0 +1,16 @@
+proxies:
+ - name: "Vmess"
+   server: www.bug.com
+   port: 443
+   type: vmess
+   uuid: 78ec76c5-127a-4939-b9c9-3c6564473e3f
+   alterId: 0
+   cipher: auto
+   tls: false  #(true) untuk ss
+   skip-cert-verify: false #(true) untuk ssl
+   network: ws
+   ws-opts:
+     path: /v2ray
+     headers:
+       Host: www.bug.com
+#
