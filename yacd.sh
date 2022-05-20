@@ -5,7 +5,7 @@ pkg install git
 pkg install micro
 pkg install unzip
 cd .config/clash
-git clone https://github.com/Alamyazid/yacd-gh-pages
+git clone https://github.com/Ijallcmd/clash/yacd-gh-pages
 cd yacd-gh-pages
 cp -r -f config.yaml $HOME/.config/clash
 cp -r -f Country.mmdb $HOME/.config/clash
@@ -19,7 +19,7 @@ cp -r -f yacd-gh-pages3.zip $HOME/.config/clash
 cd
 cd ..
 cd usr/bin
-wget -O menu "https://raw.githubusercontent.com/Alamyazid/yacd-gh-pages/master/menu.sh"
+wget -O menu "https://raw.githubusercontent.com/Ijallcmd/clash/yacd-gh-pages/master/menu.sh"
 chmod +x menu
 cd
 rm yacd.sh
