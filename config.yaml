@@ -1,0 +1,228 @@
+# UPLOAD BY ZALLBAEN
+# BAEN JATENG
+port: 7890
+socks-port: 7891
+mixed-port: 10809
+mode: global
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret : ""
+bind-address: "*"
+external-ui: yacd-gh-pages
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7894
+  use-hosts: true
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - 1.1.1.1
+  fallback:
+    - https://dns.google/dns-query
+#vmess   
+proxies:
+  - name: vmess1
+    server: 
+    port: 443
+    type: vmess
+    uuid: 
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: host
+    network: ws
+    ws-opts:
+      path: /vmess/
+      headers:
+        Host: 
+    udp: true
+  - name: vmess2
+    server: 
+    port: 443
+    type: vmess
+    uuid: 
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: 
+    network: ws
+    ws-opts:
+      path: /vmess/
+      headers:
+        Host: 
+    udp: true
+#VmessGrpc
+  - name: vmessGrpc1
+    server: 
+    port: 443
+    type: vmess
+    uuid: 
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: 
+    network: grpc
+    grpc-opts:
+      grpc-service-name: grpc
+    udp: true
+  - name: vmessGrpc2
+    server: 
+    port: 443
+    type: vmess
+    uuid: 
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: 
+    network: grpc
+    grpc-opts:
+      grpc-service-name: grpc
+    udp: true
+#TrojanGo
+  - name: TrojanGo1
+    server: v27.titktokcdn.com
+    port: 443
+    type: trojan
+    password: 7b4986c0-d0bb-11ec-af18-1239d0255272
+    skip-cert-verify: true
+    sni: id2-trojan.bonds.id
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: id2-trojan.bonds.id
+    udp: true
+  - name: TrojanGo2
+    server: 
+    port: 443
+    type: trojan
+    password: 
+    skip-cert-verify: true
+    sni: 
+    network: ws
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: 
+    udp: true
+#TrojanGrc
+  - name: TrojanGrpc1
+    server: v27.tiktokcdn.com
+    port: 8443
+    type: trojan
+    password: 
+    skip-cert-verify: true
+    sni: 
+    network: grpc
+    grpc-opts:
+      grpc-service-name: xray-trojan-grpc
+    udp: true
+  - name: TrojanGrpc2
+    server: 
+    port: 8443
+    type: trojan
+    password: 
+    skip-cert-verify: true
+    sni: 
+    network: grpc
+    grpc-opts:
+      grpc-service-name: xray-trojan-grpc
+    udp: true
+#Trojan-ssl
+  - name: Trojan-Ssl1
+    server: 
+    port: 443
+    type: trojan
+    password: 
+    skip-cert-verify: true
+    sni: 
+    udp: true
+  - name: Trojan-Ssl2
+    server: 
+    port: 443
+    type: trojan
+    password: 
+    skip-cert-verify: true
+    sni: 
+    udp: true
+proxy-groups:
+  - name: BAEN-JATENG
+    type: select
+    proxies:
+      - vmess1
+      - vmess2
+      - vmessGrpc1
+      - vmessGrpc2
+      - TrojanGo1
+      - TrojanGo2
+      - TrojanGrpc1
+      - TrojanGrpc2
+      - Trojan-Ssl1
+      - Trojan-Ssl2
+      - LOAD-BALANCE
+      - BEST-PING
+      - FALLBACK
+      - DIRECT
+  - name: LOAD-BALANCE
+    type: load-balance
+    strategy: consistent-hashing
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - vmess1
+      - vmess2
+      - vmessGrpc1
+      - vmessGrpc2
+      - TrojanGo1
+      - TrojanGo2
+      - TrojanGrpc1
+      - TrojanGrpc2
+      - Trojan-Ssl1
+      - Trojan-Ssl2
+  - name: BEST-PING
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - vmess1
+      - vmess2
+      - vmessGrpc1
+      - vmessGrpc2
+      - TrojanGo1
+      - TrojanGo2
+      - TrojanGrpc1
+      - TrojanGrpc2
+      - Trojan-Ssl1
+      - Trojan-Ssl2
+  - name: FALLBACK
+    type: fallback
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - vmess1
+      - vmess2
+      - vmessGrpc1
+      - vmessGrpc2
+      - TrojanGo1
+      - TrojanGo2
+      - TrojanGrpc1
+      - TrojanGrpc2
+      - Trojan-Ssl1
+      - Trojan-Ssl2
+rule-providers:
+  clash:
+    type: http
+    behavior: domain
+    url: https://howdy.id/download/rules/clash.txt
+    path: ./providers/rule-provider_clash.yaml
+    interval: 86400
+rules:
+  - MATCH,BAEN-JATENG
+#Gass Lurd....
