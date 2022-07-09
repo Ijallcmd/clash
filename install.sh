@@ -6,55 +6,42 @@ b="\033[1;34m"
 w="\033[0m"
 mkdir -p $HOME/.config/clash
 echo ""
-
 echo -e $b"➤ "$w"Clash For Termux Non Root"
 echo ""
-
 echo -e $b"➤ "$w" prepare for installing dependencies ..."
 echo ""
-
 echo -e $b"➤ "$w" installing pacakge: "$g"clash"$w
 pkg install clash
 echo ""
-
 echo -e $b"➤ "$w" installing pacakge: "$g"unzip"$w
 pkg install unzip
 echo ""
-
 echo -e $b"➤ "$w" installing pacakge: "$g"nano"$w
 pkg install nano
 echo ""
-
-cd $HOME/clashoc-group
+cd $HOME/clash
 sleep 2
-
 echo -e $b"➤ "$w" coppying yacd-dashbord: "$g"yacd"$w
 cp -r -f yacd-gh-pages.zip $HOME/.config/clash
 echo ""
-
 sleep 2
-
 echo -e $b"➤ "$w" coppying oc-group.yaml: "$g"oc-group"$w
 cp -r -f oc-group.yaml $HOME/.config/clash
 echo ""
-
 sleep 2
-
 echo -e $b"➤ "$w" coppying config.yaml: "$g"config"$w
 cp -r -f config.yaml $HOME/.config/clash
 echo ""
 
 sleep 2
-
 cd $HOME/.config/clash
 echo -e $b"➤ "$w" extracting yacd-dashbord: "$g"yacd"$w
 unzip yacd-gh-pages.zip
 echo ""
-
 sleep 2
 rm -r -f yacd-gh-pages.zip
 sleep 2
 cd
-rm -r -f clashoc-group
+rm -r -f clash
 clash
 clear
