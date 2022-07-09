@@ -25,7 +25,7 @@ echo -e $b"➤ "$w" installing pacakge: "$g"nano"$w
 pkg install nano
 echo ""
 
-cd $HOME/clashtermux
+cd $HOME/clash
 sleep 2
 
 echo -e $b"➤ "$w" coppying yacd-dashbord: "$g"yacd"$w
