@@ -34,8 +34,8 @@ echo ""
 
 sleep 2
 
-echo -e $b"➤ "$w" coppying master-isp.yaml: "$g"master-isp"$w
-cp -r -f master-isp.yaml $HOME/.config/clash
+echo -e $b"➤ "$w" coppying oc-group.yaml: "$g"oc-group"$w
+cp -r -f oc-group.yaml $HOME/.config/clash
 echo ""
 
 sleep 2
