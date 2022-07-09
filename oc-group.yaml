@@ -1,0 +1,50 @@
+proxies: 
+#========= Vmess ws =========
+- name: OC 1
+  type: vmess
+  server: 104.18.2.2
+  port: 80
+  uuid: f4c44e32-4dfa-4f40-8e7b-3869cc0242e8
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: false
+  skip-cert-verify: false
+  servername: #id3.v2-ray.com
+  network: ws
+  ws-opts:
+    path: /fastssh/yokkcoba/62bc8be4c3cd5/
+    headers:
+      Host: id3.v2-ray.com
+
+- name: OC 2
+  server: 104.18.24.139
+  port: 443
+  type: trojan
+  password: jupitervpn-bensol
+  skip-cert-verify: true
+  udp: true
+  sni: id2.jupitervpn.me
+  network: ws
+  ws-opts:
+    path: /trojan-go
+    headers:
+      Host: id2.jupitervpn.me
+    
+- name: OC 3
+  type: vmess
+  server: 104.18.3.2
+  port: 443
+  uuid: a9481600-ef36-402a-a0e5-5547bfd7b87c
+  alterId: 0
+  cipher: auto
+  udp: true
+  tls: true
+  skip-cert-verify: true
+  servername: vn3.v2-ray.com
+  network: ws
+  ws-opts:
+    path: /fastssh/yuios/62c28e421e6ec/
+    headers:
+      Host: vn3.v2-ray.com
+    
