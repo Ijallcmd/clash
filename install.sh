@@ -25,7 +25,7 @@ echo -e $b"➤ "$w" installing pacakge: "$g"nano"$w
 pkg install nano
 echo ""
 
-cd $HOME/clash
+cd $HOME/clashoc-group
 sleep 2
 
 echo -e $b"➤ "$w" coppying yacd-dashbord: "$g"yacd"$w
@@ -55,6 +55,6 @@ sleep 2
 rm -r -f yacd-gh-pages.zip
 sleep 2
 cd
-rm -r -f clash
+rm -r -f clashoc-group
 clash
 clear
