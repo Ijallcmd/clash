@@ -1,89 +1,238 @@
+#----------------- I.N.F.I.N.I.X H.O.T 8 ---------------#
 port: 7890
 socks-port: 7891
-mixed-port: 10809
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
 mode: global
-log-level: silent
+log-level: info
 allow-lan: true
 external-controller: 0.0.0.0:9090
-secret : ""
+secret: ""
 bind-address: "*"
-external-ui: yacd-gh-pages
+tun:
+  enable: true
+  stack: system
+  auto-route: false
+  auto-detect-interface: false
+  dns-hijack:
+  - tcp://8.8.8.8:53
+  - tcp://8.8.4.4:53
+profile:
+  store-selected: true
+  store-fake-ip: true
 dns:
   enable: true
-  ipv6: false
-  enhanced-mode: redir-host
-  listen: 127.0.0.1:7894
-  use-hosts: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  fallback-filter:
+  geoip: true
+  geoip-code: ID
+  ipcidr:
+  - 0.0.0.0/8
+  - 10.0.0.0/8
+  - 100.64.0.0/10
+  - 127.0.0.0/8
+  - 169.254.0.0/16
+  - 172.16.0.0/12
+  - 192.0.0.0/24
+  - 192.0.2.0/24
+  - 192.88.99.0/24
+  - 192.168.0.0/16
+  - 198.18.0.0/15
+  - 198.51.100.0/24
+  - 203.0.113.0/24
+  - 224.0.0.0/4
+  - 240.0.0.0/4
+  - 255.255.255.255/32
+  domain:
+  - "+.google.com"
+  - "+.facebook.com"
+  - "+.youtube.com"
+  - "+.githubusercontent.com"
+  - "+.googlevideo.com"
+  - "+.msftconnecttest.com"
+  - "+.msftncsi.com"
+  - msftconnecttest.com
+  - msftncsi.com
+  fake-ip-filter:
+  - "+.pool.ntp.org"
+  - ntp7.*.com
+  - ntp6.*.com
+  - ntp5.*.com
+  - ntp4.*.com
+  - ntp3.*.com
+  - ntp2.*.com
+  - ntp1.*.com
+  - ntp.*.com
+  - time7.*.com
+  - time6.*.com
+  - time5.*.com
+  - time4.*.com
+  - time3.*.com
+  - time2.*.com
+  - time1.*.com
+  - time.*.apple.com
+  - time.*.edu.cn
+  - time.*.gov
+  - time.*.com
+  - "*.home.arpa"
+  - "*.local"
+  - "*.test"
+  - "*.localhost"
+  - "*.invalid"
+  - "*.example"
+  - "*.localdomain"
+  - "+.media.dssott.com"
+  - "*.mcdn.bilivideo.cn"
+  - ff.dorado.sdo.com
+  - "*.ff14.sdo.com"
+  - "*.ffxiv.com"
+  - "*.finalfantasyxiv.com"
+  - "*.square-enix.com"
+  - "+.nflxvideo.net"
+  - stun.l.google.com
+  - lens.l.google.com
+  - swdist.apple.com
+  - swcdn.apple.com
+  - swdownload.apple.com
+  - swquery.apple.com
+  - swscan.apple.com
+  - mesu.apple.com
+  - "*.router.asus.com"
+  - "*.linksyssmartwifi.com"
+  - "*.linksys.com"
+  - heartbeat.belkin.com
+  - "+.stun.*.*.*.*.*"
+  - "+.stun.*.*.*.*"
+  - "+.stun.*.*.*"
+  - "+.stun.*.*"
+  - stun.*.*.*
+  - stun.*.*
+  - proxy.golang.org
+  - "+.wargaming.net"
+  - "+.wowsgame.cn"
+  - "+.wggames.cn"
+  - "+.wotgame.cn"
+  - "+.battlenet.com.cn"
+  - xnotify.xboxlive.com
+  - xbox.*.microsoft.com
+  - "*.*.xboxlive.com"
+  - xbox.*.*.microsoft.com
+  - "+.stun.playstation.net"
+  - "*.n.n.srv.nintendo.net"
+  - "+.srv.nintendo.net"
+  - localhost.sec.qq.com
+  - localhost.ptlogin2.qq.com
+  - msftncsi.com
+  - msftconnecttest.com
+  - "+.msftncsi.com"
+  - "+.msftconnecttest.com"
+  - music.migu.cn
+  - "*.music.migu.cn"
+  - "*.xiami.com"
+  - amobile.music.tc.qq.com
+  - aqqmusic.tc.qq.com
+  - dl.stream.qqmusic.qq.com
+  - isure.stream.qqmusic.qq.com
+  - mobileoc.music.tc.qq.com
+  - streamoc.music.tc.qq.com
+  - "*.y.qq.com"
+  - y.qq.com
+  - joox.com
+  - api.joox.com
+  - api-jooxtt.sanook.com
+  - "*.kuwo.cn"
+  - trackercdn.kugou.com
+  - songsearch.kugou.com
+  - music.taihe.com
+  - musicapi.taihe.com
+  - "*.126.net"
+  - "*.music.163.com"
+  - music.163.com
+  - time1.cloud.tencent.com
+  - "*.ntp.org.cn"
+  - "*.time.edu.cn"
+  - "*.lan"
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+  - 8.8.8.8
+  - 8.8.4.4
+  - 192.168.8.1
+  - 192.168.42.129
   nameserver:
-    - https://cloudflare-dns.com/dns-query
-    - 1.1.1.1:53
-  fallback:
-    - https://dns.google/dns-query
-
+  - 192.168.8.1
+  - 8.8.8.8
+  - 8.8.4.4
+  - https://dns.google/dns-query
+  - tls://dns.google
 proxy-providers:
-  Vmess:
+  oc-group:
     type: file
-    path: "./vmess.yaml"
-    health-check:
-      enable: false
-      url: http://www.gstatic.com/generate_204
-      interval: 300
-  Trojan:
-    type: file
-    path: "./trojan.yaml"
+    path: "./oc-group.yaml"
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
-      interval: 300
-  Trojan-go:
-    type: file
-    path: "./trojan-go.yaml"
-    health-check:
-       enable: true
-       url: http://www.gstatic.com/generate_204
-       interval: 300
-
+      interval: 99
+    
 proxy-groups:
-- name: VMESS
-  type: select
-  strategy: consistent-hashing
-  disable-udp: false
-  use:
-    - Vmess 
-  url: http://www.gstatic.com/generate_204
-  interval: '300'
-
-- name: TROJAN
-  type: select
-  strategy: consistent-hashing
-  disable-udp: false
-  use:
-    - Trojan
-  url: http://www.gstatic.com/generate_204
-  interval: '300'
-
-- name: TROJAN-GO
-  type: select
-  strategy: consistent-hashing
-  disable-udp: false
-  use:
-    - Trojan-go
-  url: http://www.gstatic.com/generate_204
-  interval: '200'
-
-- name: BEST-PING
-  type: url-test
-  strategy: consistent-hashing
-  use:
-    - Vmess
-    - Trojan
-    - Trojan-go
-  url: http://www.gstatic.com/generate_204
-  interval: '300'
-
+  - name: GRUP-OC
+    type: select
+    unified-delay: true
+    use:
+      - oc-group
+    url: http://www.gstatic.com/generate_204
+    interval: '99'
+  - name: PING IMUT
+    type: url-test
+    unified-delay: true
+    use:
+      - oc-group
+    url: http://www.gstatic.com/generate_204
+    interval: 99
+  - name: FallOver
+    type: fallback
+    unified-delay: true
+    use:
+      - oc-group
+    url: http://www.gstatic.com/generate_204
+    interval: 99
+  - oc-group
+rule-providers:
+  rejectgrup:
+    type: file
+    behavior: domain
+    path: "./rejectgrup.yaml"
+  iprejectgrup:
+    type: file
+    behavior: domain
+    path: "./iprejectgrup.yaml"
+  directgrup:
+    type: file
+    behavior: domain
+    path: "./directgrup.yaml"
+  globalgrup:
+    type: file
+    behavior: domain
+    path: "./globalgrup.yaml"
 rules:
-#- RULE,direct,DIRECT
-- MATCH,VMESS
-- MATCH,TROJAN
-- MATCH,TROJAN-GO
-- MATCH,BEST-PING
+- MATCH,GRUP-OC
+- GEOIP,ID,GRUP-OC
+- MATCH,DIRECT,REJECT
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- RULE-SET,iprejectgrup,GRUP-OC
+- RULE-SET,rejectgrup,GRUP-OC
+- RULE-SET,directgrup,GRUP-OC
+- RULE-SET,globalgrup,GRUP-OC
+- RULE-SET,bypass,GRUP-OC
+- RULE-SET,vpn,GRUP-OC
+- DST-PORT,80,GRUP-OC
+- DST-PORT,443,GRUP-OC
+- DST-PORT,22,GRUP-OC
+- DST-PORT,5222,DIRECT
+- DST-PORT,7100,DIRECT
+- DST-PORT,7200,DIRECT
+- DST-PORT,7300,DIRECT
+- DST-PORT,7900,DIRECT
+
+#Semangat belajar
